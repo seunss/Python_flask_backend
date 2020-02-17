@@ -20,6 +20,11 @@ app = Flask(__name__)
 #filename = "heartbeat_disease_model_pkl.sav"
 #loaded_model = pickle.load(open(filename, 'rb'))
 
+def features_file(audio):
+    y, sr = librosa.load(audio, duration=4)
+    mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=40)
+    return mfccs
+
 #def pAudio():
     
 
@@ -29,7 +34,9 @@ def hello_world_sever():
         if 'file' not in request.files:
             #flash('No file part')
 
-        #f = request.files['file']
+        f = request.files['file']
+        feats = features_file(f)
+        #mode.predict()
          return 'You have a healthy Heart'
 
 @app.route('/')
