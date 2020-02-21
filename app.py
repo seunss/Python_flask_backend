@@ -4,7 +4,7 @@ from werkzeug.utils import secure_filename
 #from keras.models import load_model
 import pickle
 from flask import render_template
-import librosa
+#import librosa
 import librosa.display
 import tflite_runtime.interpreter as tflite
 
@@ -34,8 +34,7 @@ def hello_world_sever():
         if 'file' not in request.files:
             #flash('No file part')
 
-        f = request.files['file']
-        feats = features_file(f)
+        #f = request.files['file']
         #mode.predict()
          return 'You have a healthy Heart'
 
