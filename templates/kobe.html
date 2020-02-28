@@ -70,9 +70,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <h1>Heart Rate classification</h1>
 
 
-<form action="{{ url_for('hello_world_sever') }}" method="post">
-  Select a file: <input type="file" name="myFile"><br><br>
-  <input type="submit">
+<form action="{{ url_for('hello_world_sever') }}" method="post" enctype= "multipart/form-data">
+  Select a file: <input type="file"  name="m"><br><br>
+  <input type="submit" value=Upload>
 </form>
 
 
