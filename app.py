@@ -35,6 +35,7 @@ def predictor(mfccs):
         print(y)
      except:
          print('Something went wrong')
+         return True
 
      return x1
 
@@ -59,7 +60,8 @@ def hello_world_sever():
 
         f = request.files['m']
         x = features_file(f)
-        #mode.predict()
+        if x:
+            return "Server not working"
         return 'You have a healthy Heart'
 
 @app.route('/')
