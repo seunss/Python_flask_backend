@@ -18,14 +18,19 @@ app = Flask(__name__)
 # process audiofile
 # return 1 for unhealthy and Return 
 #model = load_model('model.h5')
-#filename = "heartbeat_disease_model_pkl.sav"
-#loaded_model = pickle.load(open(filename, 'rb'))
+filename = "heartbeat_diseaseMLP.sav"
+loaded_model = pickle.load(open(filename, 'rb'))
 def predictor(mfccs):
      x1 = []
      x1.append(mfccs)
      x1 = np.asarray(x1)
      print("X train:", x1.shape)
-     
+     x1Size = len(x1)
+     x1 = x1.reshape(x1Size,-1)
+     print("X train:", x1.shape)
+     y = loaded_model.predict(x1)
+     print(y)
+
      return x1
 
 
