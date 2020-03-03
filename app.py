@@ -6,6 +6,7 @@ import pickle
 import numpy as np
 from flask import render_template
 import librosa
+from sklearn.externals import joblib
 #import librosa.display
 #import tflite_runtime.interpreter as tflite
 
@@ -18,8 +19,9 @@ app = Flask(__name__)
 # process audiofile
 # return 1 for unhealthy and Return 
 #model = load_model('model.h5')
-filename = "heartbeat_diseaseMLP.sav"
-loaded_model = pickle.load(open(filename, 'rb'))
+filename = "joblibheartbeat_diseaseKNN.sav"
+#loaded_model = pickle.load(open(filename, 'rb'))
+loaded_model = joblib.load(filename)
 def predictor(mfccs):
      x1 = []
      x1.append(mfccs)
@@ -28,8 +30,11 @@ def predictor(mfccs):
      x1Size = len(x1)
      x1 = x1.reshape(x1Size,-1)
      print("X train:", x1.shape)
-     y = loaded_model.predict(x1)
-     print(y)
+     try:
+        y = loaded_model.predict(x1)
+        print(y)
+     except:
+         print('Something went wrong')
 
      return x1
 
