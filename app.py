@@ -16,6 +16,7 @@ from sklearn.externals import joblib
 
 
 app = Flask(__name__)
+app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024 #Prevent audio bigger than 10MB
 # Post Request
 # process audiofile
 # return 1 for unhealthy and Return 
