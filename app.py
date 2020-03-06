@@ -23,6 +23,7 @@ app = Flask(__name__)
 filename = "joblibheartbeat_diseaseKNN.sav"
 #loaded_model = pickle.load(open(filename, 'rb'))
 loaded_model = joblib.load(filename)
+predictorWorking = True
 def predictor(mfccs):
      x1 = []
      x1.append(mfccs)
@@ -34,12 +35,13 @@ def predictor(mfccs):
      try:
         y = loaded_model.predict(x1)
         print(y)
+        
      except:
          print('Something went wrong')
-         y = loaded_model.predict(x1)
+         predictorWorking = False
          return True
 
-     return x1
+     return True
 
 
 
@@ -55,6 +57,7 @@ def features_file(audio):
 @app.route('/server', methods = ['POST'])
 def hello_world_sever():
     if request.method == 'POST':
+        predictorWorking = True
         if 'm' not in request.files:
             print(request.files)
             print(request)
@@ -62,8 +65,13 @@ def hello_world_sever():
 
         f = request.files['m']
         x = features_file(f)
-        if x:
-            return "Server not working"
+        if predictorWorking:
+            if x:
+                return "Healthy Heart"
+            else:
+                return "Murmur Detected"
+        else:
+            return "Server Not working"
         return 'You have a healthy Heart'
 
 @app.route('/')
