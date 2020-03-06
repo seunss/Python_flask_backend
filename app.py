@@ -2,6 +2,7 @@ from flask import Flask
 from flask import request, jsonify, redirect, url_for
 from werkzeug.utils import secure_filename
 #from keras.models import load_model
+from sklearn.neighbors import KNeighborsClassifier
 import pickle
 import numpy as np
 from flask import render_template
@@ -35,6 +36,7 @@ def predictor(mfccs):
         print(y)
      except:
          print('Something went wrong')
+         y = loaded_model.predict(x1)
          return True
 
      return x1
