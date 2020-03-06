@@ -52,7 +52,27 @@ def features_file(audio):
     return predict
 
 #def pAudio():
-    
+@app.route('/coleworld', methods = ['POST'])
+def moblie():
+    if request.method == 'POST':
+        predictorWorking = True
+        if 'm' not in request.files:
+            print(request.files)
+            print(request)
+            return 'no file found'
+
+        f = request.files['m']
+        x = features_file(f)
+        if predictorWorking:
+            if x:
+                return jsonify("Healthy Heart")
+            else:
+                return jsonify("Murmur Detected")
+        else:
+            return jsonify("Server Not working")
+        return jsonify('You have a healthy Heart')
+
+
 
 @app.route('/server', methods = ['POST'])
 def hello_world_sever():
