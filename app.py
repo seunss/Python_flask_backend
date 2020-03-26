@@ -36,6 +36,10 @@ def predictor(mfccs):
      try:
         y = loaded_model.predict(x1)
         print(y)
+        if y[0] == 0:
+            return False
+        
+
         
      except:
          print('Something went wrong')
