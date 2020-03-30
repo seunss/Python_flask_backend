@@ -61,7 +61,7 @@ def features_file(audio):
 def moblie():
     if request.method == 'POST' or request.method == 'GET':
         predictorWorking = True
-        if 'm' not in request.files:
+        if 'file' not in request.files:
             print(request.files)
             print(request)
             return 'no file found'
