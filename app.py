@@ -57,9 +57,9 @@ def features_file(audio):
     return predict
 
 #def pAudio():
-@app.route('/coleworld', methods = ['POST'])
+@app.route('/coleworld', methods = ['POST','GET'])
 def moblie():
-    if request.method == 'POST':
+    if request.method == 'POST' or request.method == 'GET':
         predictorWorking = True
         if 'm' not in request.files:
             print(request.files)
