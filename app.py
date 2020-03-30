@@ -66,7 +66,7 @@ def moblie():
             print(request)
             return 'no file found'
 
-        f = request.files['m']
+        f = request.files['file']
         x = features_file(f)
         if predictorWorking:
             if x:
