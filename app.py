@@ -64,7 +64,7 @@ def moblie():
         if 'file' not in request.files:
             print(request.files)
             print(request)
-            return 'no file found'
+            return jsonify('no file found')
 
         f = request.files['file']
         x = features_file(f)
