@@ -53,6 +53,7 @@ def predictor(mfccs):
 def features_file(audio):
     y, sr = librosa.load(audio, duration=4)
     mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=40)
+    print(mfccs)
     predict = predictor(mfccs)
     return predict
 
